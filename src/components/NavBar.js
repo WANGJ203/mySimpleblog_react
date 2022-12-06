@@ -1,9 +1,19 @@
-import React from 'react';
 import {Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
+import React, {Fragment, useEffect, useState} from 'react';
 
 
 
 function NavBar(props) {
+ const [token, setToken] = useState("")
+ const [hasToken, setHasToken] = useState(false)
+
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            setHasToken(true)
+            setToken(localStorage.getItem("token"))
+        }
+    },[token]);
+
     return (
        <Navbar bg="light" expand="lg">
       <Container>
@@ -13,7 +23,10 @@ function NavBar(props) {
           <Nav className="me-auto">
             <Nav.Link href="home">Home</Nav.Link>
             <Nav.Link href="category">Category</Nav.Link>
-            <Nav.Link href="login">Login</Nav.Link>
+            {hasToken?
+                <Nav.Link href="login">Logout</Nav.Link> :
+                <Nav.Link href="login">Login</Nav.Link>
+            }
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
