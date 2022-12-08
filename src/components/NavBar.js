@@ -22,6 +22,7 @@ function NavBar(props) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="home">Home</Nav.Link>
+              <Nav.Link href="posts">Posts</Nav.Link>
             <Nav.Link href="category">Category</Nav.Link>
             {hasToken?
                 <Nav.Link href="login">Logout</Nav.Link> :

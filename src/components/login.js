@@ -73,29 +73,6 @@ function Login(props) {
         })
     }
 
-//function logout(){
-//        let login_token = localStorage.getItem("token");
-//        axios.get(
-//            BaseUrl+'auth/logout/',
-//            {
-//                headers: {
-//                    'Authorization': 'Token '+login_token,
-//                }
-//            }
-//        ).then(response=>{
-//            console.log(response);
-//            localStorage.removeItem("token");
-//            setToken("");
-//            setHasToken(false);
-////            navigate("/");
-////            window.location.reload(false); //refresh page
-//
-//        }).catch(error=>{
-//            console.log(error);
-//        })
-//        ;
-//    }
-
     return (
         <div>
             {/*{hasToken?... : ...}*/}
