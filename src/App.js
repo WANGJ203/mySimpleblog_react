@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import Login from "./components/login";
 import Posts from "./components/posts";
 import PostDetail from "./components/postDetail";
+import CreatePost from "./components/createPost";
 
 
 
@@ -21,6 +22,7 @@ function App() {
                 <Route path="category" element={<Category/>}/>
                 <Route path="login" element={<Login/>}/>
                 <Route path="postDetail" element={<PostDetail/>}/>
+                <Route path="createPost" element={<CreatePost/>}/>
             </Routes>
         </div>
     );

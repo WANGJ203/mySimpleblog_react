@@ -20,6 +20,7 @@ function Posts(props) {
 
     return (
         <div>
+           <Link to={"/createPost"} className={"btn btn-success"}>Create a post</Link>
             {posts.map(post =>
                 <p>
                     <Link to={"/postDetail"} state={{post_id: post.id}} key={post.id}>{post.title}</Link>
