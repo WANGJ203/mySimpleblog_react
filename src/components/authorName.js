@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import axios from "axios";
 import {BaseUrl} from "./constants";
 
@@ -15,7 +15,7 @@ function AuthorName(props) {
      },[name]);
 
     return (
-       <fragment>{name}</fragment>
+       <Fragment>{name}</Fragment>
     );
 }
 
