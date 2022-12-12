@@ -8,8 +8,7 @@ import Login from "./components/login";
 import Posts from "./components/posts";
 import PostDetail from "./components/postDetail";
 import CreatePost from "./components/createPost";
-
-
+import UpdatePost from "./components/updatePost";
 
 
 function App() {
@@ -23,6 +22,7 @@ function App() {
                 <Route path="login" element={<Login/>}/>
                 <Route path="postDetail" element={<PostDetail/>}/>
                 <Route path="createPost" element={<CreatePost/>}/>
+                <Route path="updatePost" element={<UpdatePost/>}/>
             </Routes>
         </div>
     );

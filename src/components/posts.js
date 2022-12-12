@@ -1,15 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import axios from "axios";
 import {BaseUrl} from "./constants";
 import AuthorName from "./authorName";
 import {Link} from "react-router-dom";
 
+
 function Posts(props) {
     const [posts, setPosts] = useState([]);
-
     const [token, setToken] = useState("");
     const [hasToken, setHasToken] = useState(false);
-
+    const [userID, setUserID] = useState(0);
     // if user is logged in, show the create a post button
     useEffect(() => {
         if (localStorage.getItem("token")) {
@@ -17,7 +17,6 @@ function Posts(props) {
             setToken(localStorage.getItem("token"))
         }
     }, [token]);
-
 
     useEffect(() => {
         axios.get(BaseUrl + '/post/post_viewSet/')
@@ -27,8 +26,37 @@ function Posts(props) {
             .catch((error) => {
                 console.log(error);
             })
-    }, []);
+    }, [posts]);
 
+
+    // set permission by userID
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            setHasToken(true);
+            axios.get(BaseUrl + "post/user_id_search/", {
+                headers:
+                    {'Authorization': 'Token ' + localStorage.getItem("token")}
+            })
+                .then(response => {
+                    setUserID(response.data.user_id)
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+        }
+    });
+
+
+    function deletePost(event) {
+        let post_id = event.target.value
+        axios.delete(BaseUrl + '/post/post_viewSet/'+post_id)
+            .then(response => {
+                alert("post deleted successfully")
+            })
+            .catch(error=>{
+            console.log(error)
+        })
+    }
 
     return (
         <div>
@@ -36,11 +64,20 @@ function Posts(props) {
                 :
                 " "}
             {posts.map(post =>
-                <p>
-                    <Link to={"/postDetail"} state={{post_id: post.id}} key={post.id}>{post.title}</Link>
+                <p key={post.id}>
+
+                    <Link to={"/postDetail"} state={{post_id: post.id}}>{post.title}</Link>
                     -
                     <AuthorName authorID={post.author}/> -
                     {post.body}
+                    {userID === post.author ?
+                        <Fragment>
+                            <Link to={"/UpdatePost"} state={{post_id: post.id}}
+                                  className={"btn btn-primary"}>Update</Link>
+                            <button onClick={deletePost} value={post.id} className={"btn btn-warning"}>Delete</button>
+                        </Fragment>
+                        :
+                        ""}
                 </p>)}
         </div>
     );
