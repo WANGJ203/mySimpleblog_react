@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import Category from "./category";
+import Category from "../category/category";
 import axios from "axios";
-import {BaseUrl} from "./constants";
-import login from "./login";
+import {BaseUrl} from "../constants";
+import login from "../login";
 
 function CreatePost(props) {
     const [token, setToken] = useState("")

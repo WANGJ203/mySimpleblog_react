@@ -1,8 +1,9 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import axios from "axios";
-import {BaseUrl} from "./constants";
-import AuthorName from "./authorName";
+import {BaseUrl} from "../constants";
+import AuthorName from "../authorName";
 import {Link} from "react-router-dom";
+import Category from "../category/category";
 
 
 function Posts(props) {
@@ -69,8 +70,9 @@ function Posts(props) {
                     <Link to={"/postDetail"} state={{post_id: post.id}}>{post.title}</Link>
                     -
                     <AuthorName authorID={post.author}/> -
-                    {post.body}
-                    {userID === post.author ?
+                    {post.body}-
+                    {post.category}
+                    {userID == post.author ?
                         <Fragment>
                             <Link to={"/UpdatePost"} state={{post_id: post.id}}
                                   className={"btn btn-primary"}>Update</Link>

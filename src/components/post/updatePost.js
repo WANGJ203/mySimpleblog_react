@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import Category from "./category";
+import Category from "../category/category";
 import {useLocation} from "react-router-dom";
 import axios from "axios";
-import {BaseUrl} from "./constants";
+import {BaseUrl} from "../constants";
+import posts from "./posts";
 
 function UpdatePost(props) {
 
